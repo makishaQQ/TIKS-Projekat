@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ov4UmK+/40oOOeJa/r3HoGJ43JmwIabWnwhqmBI6atQTssay56L82gueL8J1GFbViP/vqXv0WsSzNvDo1prhWQ==",
+  "dgSpecHash": "h8u+Q2FJklIuIe2gZtnMEG0Giz3zh8e+Qm2ugOruNs9xWaN9g4UfkztB2/pyl28ONd2tpOW6oQw+1mTDmpnboA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Roko\\source\\repos\\TestiranjeAPI\\TestiranjeAPI\\TestiranjeAPI.csproj",
+  "projectFilePath": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\TestiranjeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Roko\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Roko\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.8\\microsoft.aspnetcore.openapi.7.0.8.nupkg.sha512",

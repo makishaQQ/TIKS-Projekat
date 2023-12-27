@@ -1453,11 +1453,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Roko\\source\\repos\\TestiranjeAPI\\TestiranjeAPI\\TestiranjeAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\TestiranjeAPI.csproj",
       "projectName": "TestiranjeAPI",
-      "projectPath": "C:\\Users\\Roko\\source\\repos\\TestiranjeAPI\\TestiranjeAPI\\TestiranjeAPI.csproj",
+      "projectPath": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\TestiranjeAPI.csproj",
       "packagesPath": "C:\\Users\\Roko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Roko\\source\\repos\\TestiranjeAPI\\TestiranjeAPI\\obj\\",
+      "outputPath": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Roko\\AppData\\Roaming\\NuGet\\NuGet.Config",

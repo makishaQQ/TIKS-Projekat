@@ -81,4 +81,22 @@ public class UserController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpGet("info/{id}")]
+    public async Task<ActionResult> GetUserInfo([FromRoute] int id)
+    {
+        try
+        {
+            var user = await Context.Users
+                .Where(u => u.Id == id)
+                .Select(u => new UserViewModel(u.Username, u.Email, u.Password, u.Avatar))
+                .FirstOrDefaultAsync();
+
+            return Ok(user);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

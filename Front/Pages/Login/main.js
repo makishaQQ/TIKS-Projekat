@@ -21,6 +21,7 @@ export class LoginPage {
     }
 
     async handleLoginClick() {
+        console.log("OK")
         const userLoginRequest = await fetch (serverUrl + "/User/login", {
             method: "POST",
             headers: {
@@ -28,13 +29,13 @@ export class LoginPage {
             },
             body: JSON.stringify(this.user)
         });
-
+       
         if (!userLoginRequest.ok) {
             //mozda treba izmena kasnije ovde
             console.log("ERROR: Login..");
             return;
         }
-        
+        console.log(await userLoginRequest().json());
         localStorage.setItem("id", await userLoginRequest.json());
         window.location = "../Dashboard/index.html";
     }

@@ -6,11 +6,17 @@ export class DashboardPage {
         this.myPartiesButton = document.body.querySelector(".my-parties-button");
         this.createPartyButton = document.body.querySelector(".create-party-button");
         this.ticketsButton = document.body.querySelector(".tickets-button");
+        this.tasksButton = document.body.querySelector(".tasks-button");
+        this.createTaskButton = document.body.querySelector(".create-task-button");
+        this.profileButton = document.body.querySelector(".profile-button");
 
-        this.partiesButton.addEventListener("click", () => window.location.href = "http://localhost:5500" + "/Pages/Parties/index.html");
-        this.myPartiesButton.addEventListener("click", async() => this.handleMyPartiesClick());
+        this.partiesButton.addEventListener("click", () => window.location.href = baseUrl + "/Pages/Parties/index.html");
+        this.myPartiesButton.addEventListener("click", () => window.location.href = baseUrl + "/Pages/MyParties/index.html");
         this.createPartyButton.addEventListener("click", () => window.location.href = baseUrl + "/Pages/CreateParty/index.html");
         this.ticketsButton.addEventListener("click", () => window.location.href = baseUrl + "/Pages/Tickets/index.html");
+        this.tasksButton.addEventListener("click", () => window.location.href = baseUrl + "/Pages/Tasks/index.html");
+        this.createTaskButton.addEventListener("click", () => window.location.href = "/Pages/CreateTask/index.html");
+        this.profileButton.addEventListener("click", () => window.location.href = baseUrl + "/Pages/UserProfile/index.html");
     }
 
     async handleMyPartiesClick() {

@@ -15,7 +15,7 @@ public class PartyController : ControllerBase
     }
 
     [HttpPost("create/{userId}")]
-    public async Task<ActionResult> CreateParty([FromBody]PartyCreate party, [FromRoute]int userId)
+    public async Task<ActionResult> CreateParty([FromBody] PartyCreate party, [FromRoute] int userId)
     {
         try
         {
@@ -38,7 +38,7 @@ public class PartyController : ControllerBase
     }
 
     [HttpPost("attend/{partyId}/{userId}")]
-    public async Task<ActionResult> AttendParty([FromRoute]int partyId, [FromRoute]int userId)
+    public async Task<ActionResult> AttendParty([FromRoute] int partyId, [FromRoute] int userId)
     {
         try
         {
@@ -75,6 +75,7 @@ public class PartyController : ControllerBase
                     p.Name,
                     p.City,
                     p.Address,
+                    p.Image
                 })
                 .ToListAsync();
 
@@ -114,7 +115,7 @@ public class PartyController : ControllerBase
     }
 
     [HttpDelete("unattend/{partyId}/{userId}")]
-    public async Task<ActionResult> CancelUserAttendance([FromRoute]int partyId, [FromRoute]int userId)
+    public async Task<ActionResult> CancelUserAttendance([FromRoute] int partyId, [FromRoute] int userId)
     {
         try
         {
@@ -137,7 +138,7 @@ public class PartyController : ControllerBase
     }
 
     [HttpDelete("cancelparty/{partyId}")]
-    public async Task<ActionResult> CancelUserParty([FromRoute]int partyId)
+    public async Task<ActionResult> CancelUserParty([FromRoute] int partyId)
     {
         try
         {
@@ -150,7 +151,13 @@ public class PartyController : ControllerBase
                 .Where(p => p.Id == partyId)
                 .FirstOrDefaultAsync();
 
+            var tasks = await Context.Tasks
+                .Include(t => t.Party)
+                .Where(t => t.Party.Id == partyId)
+                .ToListAsync();
+
             Context.PartyAttendances.RemoveRange(partyAttendees);
+            Context.Tasks.RemoveRange(tasks);
             Context.Parties.Remove(party);
             await Context.SaveChangesAsync();
 
@@ -163,7 +170,7 @@ public class PartyController : ControllerBase
     }
 
     [HttpPut("editparty/{partyId}")]
-    public async Task<ActionResult> EditParty([FromBody]PartyUpdate party, [FromRoute]int partyId)
+    public async Task<ActionResult> EditParty([FromBody] PartyUpdate party, [FromRoute] int partyId)
     {
         try
         {
@@ -178,6 +185,49 @@ public class PartyController : ControllerBase
             await Context.SaveChangesAsync();
 
             return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("parties/{userId}")]
+    public async Task<ActionResult> GetAllParties([FromRoute]int userId)
+    {
+        try
+        {
+            var parties = await Context.Parties
+                .Include(p => p.Creator)
+                .Include(p => p.Attendees)
+                .Where(p => p.Attendees.Any(a => a.User.Id != userId))
+                .Select(p => new PartyViewModel(p.Id, p.Name, p.City, p.Address, p.Image, p.Creator.Username, p.Creator.Id))
+                .ToListAsync();
+
+            return Ok(parties);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("parties-names/{userId}")]
+    public async Task<ActionResult> GetUserCreatedPartiesNames([FromRoute] int userId)
+    {
+        try
+        {
+            var parties = await Context.Parties
+                .Include(p => p.Creator)
+                .Where(p => p.Creator.Id == userId)
+                .Select(p => new
+                {
+                    Id = p.Id,
+                    Name = p.Name
+                })
+                .ToListAsync();
+
+            return Ok(parties);
         }
         catch (Exception e)
         {

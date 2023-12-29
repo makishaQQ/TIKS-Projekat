@@ -23,15 +23,18 @@ public class TaskController : ControllerBase
                 .Include(t => t.User)
                 .Include(t => t.Party)
                 .Where(t => t.User.Id == userId)
-                .Select(t => new
+                .GroupBy(t => new { t.Party.Id, t.Party.Name })
+                .Select(group => new
                 {
-                    partyId = t.Party.Id,
-                    partyName = t.Party.Name,
-                    taskId = t.Id,
-                    taskName = t.Name,
-                    taskDescription = t.Description
+                    PartyId = group.Key.Id,
+                    PartyName = group.Key.Name,
+                    Tasks = group.Select(t => new
+                    {
+                        taskId = t.Id,
+                        taskName = t.Name,
+                        taskDescription = t.Description
+                    })
                 })
-                .GroupBy(t => t.partyId)
                 .ToListAsync();
 
             return Ok(tasks);

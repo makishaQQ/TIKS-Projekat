@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using TestiranjeAPI.IRepository;
 using TestiranjeAPI.Models;
+using TestiranjeAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +17,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CORS", builder =>
     {
-        builder.SetIsOriginAllowed(host => true).
-        AllowAnyHeader()
+        builder.WithOrigins(new string[] {"http://127.0.0.1:5500"})
+        .AllowAnyHeader()
         .AllowAnyMethod();
     });
 });
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 

@@ -42,16 +42,16 @@ export class Ticket {
 
         const unattendButton = document.createElement("sl-button");
         unattendButton.textContent = "Unattend";
-        unattendButton.addEventListener("click", async() => await this.handleUnattendButton());
+        unattendButton.addEventListener("click", async() => await this.unAttendClick());
         footerDiv.appendChild(unattendButton);
     }
 
-    async unattendButton() {
-        const unattendRequest = await fetch (serverUrl + "/cancelparty/" + this.ticket["id"], {
+    async unAttendClick() {
+        const unattendRequest = await fetch (serverUrl + "/Party/unattend/" + this.ticket["id"] + "/" + localStorage.getItem("id"), {
             method: "DELETE"
         });
 
-        if (!cancelRequest.ok) return;
+        if (!unattendRequest.ok) return;
 
         this.container.parentNode.removeChild(this.container);
     }

@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi.tests\\usertests\\usertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|solutionrelative:testiranjeapi.tests\\usertests\\usertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|solutionrelative:testiranjeapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "TestiranjeAPI\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Controllers\\UserController.cs",
+              "RelativeToolTip": "TestiranjeAPI\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-31T11:58:48.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserTest.cs",
+              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\UserTests\\UserTest.cs",
+              "RelativeDocumentMoniker": "TestiranjeAPI.Tests\\UserTests\\UserTest.cs",
+              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\UserTests\\UserTest.cs",
+              "RelativeToolTip": "TestiranjeAPI.Tests\\UserTests\\UserTest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-30T16:00:28.724Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

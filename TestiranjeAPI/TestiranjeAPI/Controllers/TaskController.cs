@@ -56,8 +56,8 @@ public class TaskController : ControllerBase
                 .FindAsync(partyId);
 
             Models.Task newTask = new Models.Task(task.Name, task.Description);
-            newTask.User = user;
-            newTask.Party = party;
+            newTask.User = user!;
+            newTask.Party = party!;
 
             await Context.Tasks.AddAsync(newTask);
             await Context.SaveChangesAsync();
@@ -75,13 +75,10 @@ public class TaskController : ControllerBase
     {
         try
         {
-            var taskToUpdate = await Context.Tasks
-                .FindAsync(taskId);
-
-            taskToUpdate.Name = task.Name;
-            taskToUpdate.Description = task.Description;
-
-            await Context.SaveChangesAsync();
+            await Context.Tasks
+                .ExecuteUpdateAsync(t =>
+                t.SetProperty(tu => tu.Name, task.Name)
+                .SetProperty(tu => tu.Description, task.Description));
 
             return Ok();
         }
@@ -96,11 +93,9 @@ public class TaskController : ControllerBase
     {
         try
         {
-            var task = await Context.Tasks
-                .FindAsync(taskId);
-
-            Context.Tasks.Remove(task);
-            await Context.SaveChangesAsync();
+            await Context.Tasks
+                .Where(t => t.Id == taskId)
+                .ExecuteDeleteAsync();
 
             return Ok();
         }

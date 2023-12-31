@@ -43,14 +43,14 @@ export class Party {
         card.appendChild(footerDiv);
 
         const attendPartyButton = document.createElement("sl-button");
-        attendPartyButton.textContent = "Cancel Party";
+        attendPartyButton.textContent = "Attend Party";
         attendPartyButton.addEventListener("click", async() => await this.handleAttendPartyClick());
         footerDiv.appendChild(attendPartyButton);
     }
 
     async handleAttendPartyClick() {
         const attendPartyRequest = 
-        await fetch (serverUrl + "/Party/attend/" + this.party["id"] + "/" + this.party["creatorId"], {
+        await fetch (serverUrl + "/Party/attend/" + this.party["id"] + "/" + localStorage.getItem("id"), {
             method: "POST"
         });
 

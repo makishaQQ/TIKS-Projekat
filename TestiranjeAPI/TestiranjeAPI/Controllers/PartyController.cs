@@ -47,7 +47,9 @@ public class PartyController : ControllerBase
             var party = await Context.Parties
                 .FindAsync(partyId);
 
-            PartyAttendance partyAttendance = new PartyAttendance(user, party);
+            if (party == null) return Ok();
+
+            PartyAttendance partyAttendance = new PartyAttendance(user!, party);
 
             await Context.PartyAttendances
                 .AddAsync(partyAttendance);
@@ -68,7 +70,7 @@ public class PartyController : ControllerBase
         {
             var parties = await Context.Parties
                 .Include(p => p.Creator)
-                .Where(p => p.Creator.Id == userId)
+                .Where(p => p.Creator!.Id == userId)
                 .Select(p => new
                 {
                     p.Id,
@@ -119,15 +121,11 @@ public class PartyController : ControllerBase
     {
         try
         {
-            var partyAttendence = await Context
-                .PartyAttendances
+            await Context.PartyAttendances
                 .Include(pa => pa.User)
                 .Include(pa => pa.Party)
                 .Where(pa => pa.Party.Id == partyId && pa.User.Id == userId)
-                .FirstOrDefaultAsync();
-
-            Context.PartyAttendances.Remove(partyAttendence);
-            await Context.SaveChangesAsync();
+                .ExecuteDeleteAsync();
 
             return Ok();
         }
@@ -142,24 +140,9 @@ public class PartyController : ControllerBase
     {
         try
         {
-            var partyAttendees = await Context.PartyAttendances
-                .Include(pa => pa.Party)
-                .Where(pa => pa.Party.Id == partyId)
-                .ToListAsync();
-
-            var party = await Context.Parties
+            await Context.Parties
                 .Where(p => p.Id == partyId)
-                .FirstOrDefaultAsync();
-
-            var tasks = await Context.Tasks
-                .Include(t => t.Party)
-                .Where(t => t.Party.Id == partyId)
-                .ToListAsync();
-
-            Context.PartyAttendances.RemoveRange(partyAttendees);
-            Context.Tasks.RemoveRange(tasks);
-            Context.Parties.Remove(party);
-            await Context.SaveChangesAsync();
+                .ExecuteDeleteAsync();
 
             return Ok();
         }
@@ -174,13 +157,12 @@ public class PartyController : ControllerBase
     {
         try
         {
-            var partyToEdit = await Context.Parties
-                .FindAsync(partyId);
-
-            partyToEdit.Name = party.Name;
-            partyToEdit.City = party.City;
-            partyToEdit.Address = party.Address;
-            partyToEdit.Image = party.Image;
+            await Context.Parties
+                .Where(p => p.Id == partyId)
+                .ExecuteUpdateAsync(p => p.SetProperty(pn => pn.Name, party.Name)
+                .SetProperty(pn => pn.City, party.City)
+                .SetProperty(pn => pn.Address, party.Address)
+                .SetProperty(pn => pn.Image, party.Image));
 
             await Context.SaveChangesAsync();
 
@@ -199,9 +181,7 @@ public class PartyController : ControllerBase
         {
             var parties = await Context.Parties
                 .Include(p => p.Creator)
-                .Include(p => p.Attendees)
-                .Where(p => p.Attendees.Any(a => a.User.Id != userId))
-                .Select(p => new PartyViewModel(p.Id, p.Name, p.City, p.Address, p.Image, p.Creator.Username, p.Creator.Id))
+                .Select(p => new PartyViewModel(p.Id, p.Name, p.City, p.Address, p.Image, p.Creator!.Username, p.Creator.Id))
                 .ToListAsync();
 
             return Ok(parties);
@@ -219,7 +199,7 @@ public class PartyController : ControllerBase
         {
             var parties = await Context.Parties
                 .Include(p => p.Creator)
-                .Where(p => p.Creator.Id == userId)
+                .Where(p => p.Creator!.Id == userId)
                 .Select(p => new
                 {
                     Id = p.Id,

@@ -1,4 +1,4 @@
-import { serverUrl } from "../../config.js";
+import { baseUrl, serverUrl } from "../../config.js";
 
 
 export class LoginPage {
@@ -35,9 +35,11 @@ export class LoginPage {
             console.log("ERROR: Login..");
             return;
         }
-        console.log(await userLoginRequest().json());
-        localStorage.setItem("id", await userLoginRequest.json());
-        window.location = "../Dashboard/index.html";
+
+        localStorage.clear();
+        const id = Number.parseInt(await userLoginRequest.json());
+        localStorage.setItem("id", id);
+        window.location.href = baseUrl + "/Pages/Dashboard/index.html";
     }
 }
 

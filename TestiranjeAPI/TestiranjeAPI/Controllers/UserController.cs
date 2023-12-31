@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using TestiranjeAPI.IRepository;
 using TestiranjeAPI.Models;
 
 namespace TestiranjeAPI.Controllers;
@@ -9,28 +8,22 @@ namespace TestiranjeAPI.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    public required PartyContext Context { get; set; }
-    public UserController(PartyContext context)
+    private IUserRepository _userRepository;
+    public UserController(IUserRepository userRepository)
     {
-        Context = context;
+        _userRepository = userRepository;
     }
 
     [HttpPost("signup")]
-    public async Task<ActionResult> UserSignup([FromBody] UserRegister user)
+    public async Task<ActionResult> UserSignup([FromBody] UserRegister userRegister)
     {
         try
         {
-            var existingUser = await Context.Users
-                .Where(u => u.Username == user.Username)
-                .FirstOrDefaultAsync();
+            var existingUser = await _userRepository.GetUserByUsernameAsync(userRegister.Username);
 
             if (existingUser != null) return BadRequest();
 
-            User userRegister = new User(user.Username, user.Email, user.Password, user.Avatar);
-
-            await Context.Users
-                .AddAsync(userRegister);
-            await Context.SaveChangesAsync();
+            await _userRepository.AddUserAsnyc(userRegister);
 
             return Ok();
         }
@@ -41,17 +34,16 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> UserLogin([FromBody]UserLogin user)
+    public async Task<ActionResult> UserLogin([FromBody]UserLogin userLogin)
     {
         try
         {
-            var userLogin = await Context.Users
-                .Where(u => u.Username == user.Username && u.Password == user.Password)
-                .FirstOrDefaultAsync();
+            var existingUser = await _userRepository
+                .GetUserByUsernameAndPasswordAsync(userLogin.Username, userLogin.Password);
 
-            if (userLogin == null) return BadRequest();
+            if (existingUser == null) return BadRequest();
 
-            return Ok(userLogin.Id);
+            return Ok(existingUser.Id);
         }
         catch (Exception e)
         {
@@ -59,20 +51,18 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpPut("update/{id}")]
-    public async Task<ActionResult> UserUpdate([FromBody]UserUpdate user, [FromRoute]int id)
+    [HttpPut("update/{userId}")]
+    public async Task<ActionResult> UserUpdate([FromBody]UserUpdate userUpdate, [FromRoute]int userId)
     {
         try
         {
-            var existingUser = await Context.Users
-                .FindAsync(id);
+            var userToUpdate = await _userRepository.GetUserByIdAsync(userId);
 
-            existingUser.Username = user.Username;
-            existingUser.Email = user.Email;
-            existingUser.Password = user.Password;
-            existingUser.Avatar = user.Avatar;
+            var existingUser = await _userRepository.GetUserByUsernameAsync(userUpdate.Username);
 
-            await Context.SaveChangesAsync();
+            if (existingUser != null) return Conflict();
+
+            await _userRepository.UpdateUserAsnyc(userToUpdate!, userUpdate);
 
             return Ok();
         }
@@ -87,10 +77,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            var user = await Context.Users
-                .Where(u => u.Id == id)
-                .Select(u => new UserViewModel(u.Username, u.Email, u.Password, u.Avatar))
-                .FirstOrDefaultAsync();
+            var user = await _userRepository.GetUserInfoAsync(id);
 
             return Ok(user);
         }

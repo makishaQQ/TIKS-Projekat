@@ -2,7 +2,7 @@
 using Microsoft.Playwright.NUnit;
 using System.Net;
 
-namespace TestiranjeAPI.Tests.UserTests;
+namespace TestiranjeAPI.Tests;
 
 [TestFixture]
 public class UserTest : PlaywrightTest
@@ -30,7 +30,7 @@ public class UserTest : PlaywrightTest
     {
         await using var response = await Request.PostAsync("/User/login", new()
         {
-            Headers = new Dictionary<string, string>() { {"Content-Type", "application/json"} },
+            Headers = new Dictionary<string, string>() { { "Content-Type", "application/json" } },
             DataObject = new
             {
                 username = "makisha",
@@ -97,7 +97,7 @@ public class UserTest : PlaywrightTest
     public async Task UserUpdate_ShouldReturnOk()
     {
 
-        await using var response = await Request.PutAsync("/User/update/1", new()
+        await using var response = await Request.PutAsync("/User/update/2", new()
         {
             DataObject = new
             {
@@ -107,7 +107,7 @@ public class UserTest : PlaywrightTest
                 avatar = "Ok"
             }
         });
-
+        Console.WriteLine(response.Status);
         Assert.That(response.Status, Is.EqualTo((int)HttpStatusCode.OK));
     }
 

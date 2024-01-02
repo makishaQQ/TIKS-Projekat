@@ -1,6 +1,6 @@
-﻿namespace TestiranjeAPI.Models;
+﻿namespace TestiranjeAPI.Models.Response;
 
-public record class PartyViewModel(
+public record PartyCardResponse(
     int Id,
     string Name,
     string City,

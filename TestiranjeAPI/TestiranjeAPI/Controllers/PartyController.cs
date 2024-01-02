@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TestiranjeAPI.IRepository;
 using TestiranjeAPI.Models;
+using TestiranjeAPI.Models.Request;
 
 namespace TestiranjeAPI.Controllers;
 
@@ -8,26 +10,97 @@ namespace TestiranjeAPI.Controllers;
 [Route("[controller]")]
 public class PartyController : ControllerBase
 {
-    public required PartyContext Context { get; set; }
-    public PartyController(PartyContext context)
+    private IUserRepository _userRepository;
+    private IPartyRepository _partyRepository;
+    public PartyController(
+        IUserRepository userRepository,
+        IPartyRepository partyRepository)
     {
-        Context = context;
+        _userRepository = userRepository;
+        _partyRepository = partyRepository;
     }
 
-    [HttpPost("create/{userId}")]
-    public async Task<ActionResult> CreateParty([FromBody] PartyCreate party, [FromRoute] int userId)
+    #region GET_REQUESTS
+    [HttpGet("my-parties/{userId}")]
+    public async Task<ActionResult> GetUserCreatedParties([FromRoute] int userId)
     {
         try
         {
-            var user = await Context.Users
-                .FindAsync(userId);
+            var existingUser = await _userRepository.GetUserByIdAsync(userId);
+
+            if (existingUser == null) return BadRequest();
+
+            var userParties = await _partyRepository.GetUserCreatedPartiesAsync(userId);
+
+            return Ok(userParties);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("available-parties/{userId}")]
+    public async Task<ActionResult> GetAllParties([FromRoute] int userId)
+    {
+        try
+        {
+            var availableParties = await _partyRepository.GetAllPartiesAsync(userId);
+
+            return Ok(availableParties);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("my-attending-parties/{userId}")]
+    public async Task<ActionResult> GetUserAttendingParties([FromRoute] int userId)
+    {
+        try
+        {
+            var userAttendingParties = await _partyRepository.GetUserAttendingPartiesAsync(userId);
+
+            return Ok(userAttendingParties);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("parties-names/{userId}")]
+    public async Task<ActionResult> GetUserCreatedPartiesNames([FromRoute] int userId)
+    {
+        try
+        {
+            var parties = await _partyRepository.GetUserCreatedPartiesNamesAsync(userId);
+
+            return Ok(parties);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+    #endregion
+
+    #region POST_REQUESTS
+    [HttpPost("create/{userId}")]
+    public async Task<ActionResult> CreateParty([FromBody] PartyCreateRequest party, [FromRoute] int userId)
+    {
+        try
+        {
+            var existingUser = await _userRepository.GetUserByIdAsync(userId);
+
+            if (existingUser == null) return BadRequest();
 
             Party newParty = new Party(party.Name, party.City, party.Address, party.Image);
-            newParty.Creator = user;
+            newParty.Creator = existingUser;
 
-            await Context.Parties
-                .AddAsync(newParty);
-            await Context.SaveChangesAsync();
+            await _partyRepository.AddPartyAsync(newParty);
+            await _partyRepository.SaveChangesAsync();
 
             return Ok();
         }
@@ -42,18 +115,15 @@ public class PartyController : ControllerBase
     {
         try
         {
-            var user = await Context.Users
-                .FindAsync(userId);
-            var party = await Context.Parties
-                .FindAsync(partyId);
+            var user = await _userRepository.GetUserByIdAsync(userId);
+            var party = await _partyRepository.GetPartyByIdAsync(partyId);
 
-            if (party == null) return Ok();
+            if (party == null || user == null) return BadRequest();
 
-            PartyAttendance partyAttendance = new PartyAttendance(user!, party);
+            PartyAttendance partyAttendance = new PartyAttendance(user, party);
 
-            await Context.PartyAttendances
-                .AddAsync(partyAttendance);
-            await Context.SaveChangesAsync();
+            await _partyRepository.AddPartyAttendanceAsync(partyAttendance);
+            await _partyRepository.SaveChangesAsync();
 
             return Ok();
         }
@@ -63,69 +133,22 @@ public class PartyController : ControllerBase
         }
     }
 
-    [HttpGet("myparties/{userId}")]
-    public async Task<ActionResult> GetUserCreatedParties([FromRoute] int userId)
-    {
-        try
-        {
-            var parties = await Context.Parties
-                .Include(p => p.Creator)
-                .Where(p => p.Creator!.Id == userId)
-                .Select(p => new
-                {
-                    p.Id,
-                    p.Name,
-                    p.City,
-                    p.Address,
-                    p.Image
-                })
-                .ToListAsync();
+    #endregion
 
-            return Ok(parties);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
-
-    [HttpGet("attendingparties/{userId}")]
-    public async Task<ActionResult> GetUserAttendingParties([FromRoute] int userId)
-    {
-        try
-        {
-            var parties = await Context.PartyAttendances
-                .Include(pa => pa.User)
-                .Include(pa => pa.Party)
-                .Where(pa => pa.User.Id == userId)
-                .Select(pa => new
-                {
-                    pa.Party.Id,
-                    pa.Party.Name,
-                    pa.Party.City,
-                    pa.Party.Address,
-                    pa.Party.Image
-                })
-                .ToListAsync();
-
-            return Ok(parties);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
+    #region DELETE_REQUESTS
 
     [HttpDelete("unattend/{partyId}/{userId}")]
     public async Task<ActionResult> CancelUserAttendance([FromRoute] int partyId, [FromRoute] int userId)
     {
         try
         {
-            await Context.PartyAttendances
-                .Include(pa => pa.User)
-                .Include(pa => pa.Party)
-                .Where(pa => pa.Party.Id == partyId && pa.User.Id == userId)
-                .ExecuteDeleteAsync();
+
+            var partyAttendanceToDelete = await _partyRepository.GetUserAttendanceAsync(partyId, userId);
+
+            if (partyAttendanceToDelete == null) return BadRequest();
+
+            _partyRepository.RemovePartyAttendance(partyAttendanceToDelete);
+            await _partyRepository.SaveChangesAsync();
 
             return Ok();
         }
@@ -135,14 +158,17 @@ public class PartyController : ControllerBase
         }
     }
 
-    [HttpDelete("cancelparty/{partyId}")]
+    [HttpDelete("cancel/{partyId}")]
     public async Task<ActionResult> CancelUserParty([FromRoute] int partyId)
     {
         try
         {
-            await Context.Parties
-                .Where(p => p.Id == partyId)
-                .ExecuteDeleteAsync();
+            var partyToDelete = await _partyRepository.GetPartyByIdAsync(partyId);
+
+            if (partyToDelete == null) return BadRequest();
+
+            _partyRepository.RemoveParty(partyToDelete);
+            await _partyRepository.SaveChangesAsync();
 
             return Ok();
         }
@@ -151,20 +177,25 @@ public class PartyController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    #endregion
 
-    [HttpPut("editparty/{partyId}")]
-    public async Task<ActionResult> EditParty([FromBody] PartyUpdate party, [FromRoute] int partyId)
+    #region PUT_REQUESTS
+
+    [HttpPut("edit/{partyId}")]
+    public async Task<ActionResult> EditParty([FromBody] PartyUpdate partyUpdate, [FromRoute] int partyId)
     {
         try
         {
-            await Context.Parties
-                .Where(p => p.Id == partyId)
-                .ExecuteUpdateAsync(p => p.SetProperty(pn => pn.Name, party.Name)
-                .SetProperty(pn => pn.City, party.City)
-                .SetProperty(pn => pn.Address, party.Address)
-                .SetProperty(pn => pn.Image, party.Image));
+            var partyToEdit = await _partyRepository.GetPartyByIdAsync(partyId);
 
-            await Context.SaveChangesAsync();
+            if (partyToEdit == null) return BadRequest();
+
+            partyToEdit.Name = partyUpdate.Name;
+            partyToEdit.City = partyUpdate.City;
+            partyToEdit.Address = partyUpdate.Address;
+            partyToEdit.Image = partyUpdate.Image;
+
+            await _partyRepository.SaveChangesAsync();
 
             return Ok();
         }
@@ -173,46 +204,5 @@ public class PartyController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-
-    [HttpGet("parties/{userId}")]
-    public async Task<ActionResult> GetAllParties([FromRoute]int userId)
-    {
-        try
-        {
-            var parties = await Context.Parties
-                .Include(p => p.Creator)
-                .Select(p => new PartyViewModel(p.Id, p.Name, p.City, p.Address, p.Image, p.Creator!.Username, p.Creator.Id))
-                .ToListAsync();
-
-            return Ok(parties);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
-
-    [HttpGet("parties-names/{userId}")]
-    public async Task<ActionResult> GetUserCreatedPartiesNames([FromRoute] int userId)
-    {
-        try
-        {
-            var parties = await Context.Parties
-                .Include(p => p.Creator)
-                .Where(p => p.Creator!.Id == userId)
-                .Select(p => new
-                {
-                    Id = p.Id,
-                    Name = p.Name
-                })
-                .ToListAsync();
-
-            return Ok(parties);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
-
+    #endregion
 }

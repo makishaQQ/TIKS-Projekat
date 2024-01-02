@@ -60,7 +60,7 @@ public class UserController : ControllerBase
 
             var existingUser = await _userRepository.GetUserByUsernameAsync(userUpdate.Username);
 
-            if (existingUser != null) return Conflict();
+            if (existingUser != null && existingUser.Username != userToUpdate!.Username) return Conflict();
 
             await _userRepository.UpdateUserAsnyc(userToUpdate!, userUpdate);
 

@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi.tests\\partytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|solutionrelative:testiranjeapi.tests\\partytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi\\controllers\\partycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|solutionrelative:testiranjeapi\\controllers\\partycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|solutionrelative:testiranjeapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi\\repository\\partyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|solutionrelative:testiranjeapi\\repository\\partyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi\\irepository\\ipartyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBB8D549-5F6B-4A27-939E-16AC1D77E4AE}|TestiranjeAPI\\TestiranjeAPI.csproj|solutionrelative:testiranjeapi\\irepository\\ipartyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,76 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Program.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI\\Program.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Program.cs",
-              "RelativeToolTip": "TestiranjeAPI\\Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-02T13:52:26.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PartyTests.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\PartyTests.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI.Tests\\PartyTests.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\PartyTests.cs",
-              "RelativeToolTip": "TestiranjeAPI.Tests\\PartyTests.cs",
-              "ViewState": "AQIAAPgAAAAAAAAAAADwvx4BAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-02T13:38:59.748Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PartyController.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Controllers\\PartyController.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI\\Controllers\\PartyController.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Controllers\\PartyController.cs",
-              "RelativeToolTip": "TestiranjeAPI\\Controllers\\PartyController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwAwAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-02T09:41:23.644Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IPartyRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\IRepository\\IPartyRepository.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI\\IRepository\\IPartyRepository.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\IRepository\\IPartyRepository.cs",
-              "RelativeToolTip": "TestiranjeAPI\\IRepository\\IPartyRepository.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-02T12:46:15.489Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PartyRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Repository\\PartyRepository.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI\\Repository\\PartyRepository.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI\\Repository\\PartyRepository.cs",
-              "RelativeToolTip": "TestiranjeAPI\\Repository\\PartyRepository.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-02T12:45:45.275Z",
-              "EditorCaption": ""
             }
           ]
         }

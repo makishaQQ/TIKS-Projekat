@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TestiranjeAPI.IRepository;
 using TestiranjeAPI.Models;
 
 namespace TestiranjeAPI.Controllers;
@@ -8,36 +9,31 @@ namespace TestiranjeAPI.Controllers;
 [Route("[controller]")]
 public class TaskController : ControllerBase
 {
-    public required PartyContext Context { get; set; }
-    public TaskController(PartyContext context)
+    private ITaskRepository _taskRepository;
+    private IUserRepository _userRepository;
+    private IPartyRepository _partyRepository;
+    public TaskController(
+        ITaskRepository taskRepository,
+        IUserRepository userRepository,
+        IPartyRepository partyRepository)
     {
-        Context = context;
+        _taskRepository = taskRepository;
+        _userRepository = userRepository;
+        _partyRepository = partyRepository;
     }
 
-    [HttpGet("mytasks/{userId}")]
+    [HttpGet("my-tasks/{userId}")]
     public async Task<ActionResult> GetUserTasks([FromRoute]int userId)
     {
         try
         {
-            var tasks = await Context.Tasks
-                .Include(t => t.User)
-                .Include(t => t.Party)
-                .Where(t => t.User.Id == userId)
-                .GroupBy(t => new { t.Party.Id, t.Party.Name })
-                .Select(group => new
-                {
-                    PartyId = group.Key.Id,
-                    PartyName = group.Key.Name,
-                    Tasks = group.Select(t => new
-                    {
-                        taskId = t.Id,
-                        taskName = t.Name,
-                        taskDescription = t.Description
-                    })
-                })
-                .ToListAsync();
+            var existingUser = await _userRepository.GetUserByIdAsync(userId);
 
-            return Ok(tasks);
+            if (existingUser == null) return BadRequest();
+
+            var userTasks = await _taskRepository.GetUserTasksAsync(userId);
+
+            return Ok(userTasks);
         }
         catch (Exception e)
         {
@@ -50,17 +46,17 @@ public class TaskController : ControllerBase
     {
         try
         {
-            var user = await Context.Users
-                .FindAsync(userId);
-            var party = await Context.Parties
-                .FindAsync(partyId);
+            var existingUser = await _userRepository.GetUserByIdAsync(userId);
+            var existingParty = await _partyRepository.GetPartyByIdAsync(partyId);
+
+            if (existingParty == null || existingParty == null) return BadRequest();
 
             Models.Task newTask = new Models.Task(task.Name, task.Description);
-            newTask.User = user!;
-            newTask.Party = party!;
+            newTask.User = existingUser!;
+            newTask.Party = existingParty!;
 
-            await Context.Tasks.AddAsync(newTask);
-            await Context.SaveChangesAsync();
+            await _taskRepository.AddTaskAsync(newTask);
+            await _taskRepository.SaveChangesAsync();
 
             return Ok();
         }
@@ -75,10 +71,14 @@ public class TaskController : ControllerBase
     {
         try
         {
-            await Context.Tasks
-                .ExecuteUpdateAsync(t =>
-                t.SetProperty(tu => tu.Name, task.Name)
-                .SetProperty(tu => tu.Description, task.Description));
+            var existingTask = await _taskRepository.GetTaskById(taskId);
+
+            if (existingTask == null) return BadRequest();
+
+            existingTask.Name = task.Name;
+            existingTask.Description = task.Description;
+
+            await _taskRepository.SaveChangesAsync();
 
             return Ok();
         }
@@ -93,9 +93,13 @@ public class TaskController : ControllerBase
     {
         try
         {
-            await Context.Tasks
-                .Where(t => t.Id == taskId)
-                .ExecuteDeleteAsync();
+            var taskToDelete = await _taskRepository.GetTaskById(taskId);
+
+            if (taskToDelete == null) return BadRequest();
+
+
+            _taskRepository.RemoveTask(taskToDelete);
+            await _taskRepository.SaveChangesAsync();
 
             return Ok();
         }

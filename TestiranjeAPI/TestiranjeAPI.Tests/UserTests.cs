@@ -5,7 +5,7 @@ using System.Net;
 namespace TestiranjeAPI.Tests;
 
 [TestFixture]
-public class UserTest : PlaywrightTest
+public class UserTests : PlaywrightTest
 {
     IAPIRequestContext Request;
 

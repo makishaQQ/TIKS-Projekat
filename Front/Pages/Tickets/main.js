@@ -9,7 +9,7 @@ export class TicketsPage {
 
     async draw() {
         console.log(localStorage.getItem("id"));
-        const ticketsRequest = await fetch (serverUrl + "/Party/attendingparties/" + localStorage.getItem("id"));
+        const ticketsRequest = await fetch (serverUrl + "/Party/my-attending-parties/" + localStorage.getItem("id"));
 
         if (!ticketsRequest.ok) {
             console.log("Greska");

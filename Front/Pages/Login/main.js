@@ -39,7 +39,7 @@ export class LoginPage {
         localStorage.clear();
         const id = Number.parseInt(await userLoginRequest.json());
         localStorage.setItem("id", id);
-        window.location.href = baseUrl + "/Pages/Dashboard/index.html";
+        window.location = "../Dashboard/index.html";
     }
 }
 

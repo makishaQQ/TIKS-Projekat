@@ -56,6 +56,8 @@ export class Party {
 
         if (!attendPartyRequest.ok) return;
 
+        alert("Karta za zurku uzeta");
+
         this.container.parentNode.removeChild(this.container);        
     }
 }   

@@ -50,7 +50,7 @@ export class Party {
             const newPartyCity = prompt("New party city");
             const newPartyAddress = prompt("New party address");
 
-            const partyUpdateRequest = await fetch (serverUrl + "/Party/editparty/" + this.party["id"], {
+            const partyUpdateRequest = await fetch (serverUrl + "/Party/edit/" + this.party["id"], {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -59,6 +59,8 @@ export class Party {
             });
 
             if (!partyUpdateRequest.ok) return;
+
+            alert("Zurka je izmenjena");
 
             this.party["name"] = newPartyName;
             this.party["city"] = newPartyCity;
@@ -80,11 +82,13 @@ export class Party {
 
     async handleCancelPartyClick() {
         const cancelPartyRequest =
-         await fetch (serverUrl + "/Party/cancelparty/" + this.party["id"], {
+         await fetch (serverUrl + "/Party/cancel/" + this.party["id"], {
             method: "DELETE"
         });
 
         if (!cancelPartyRequest.ok) return;
+
+        alert("Zurka je otkazana");
 
         this.container.parentNode.removeChild(this.container);        
     }

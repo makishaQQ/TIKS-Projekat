@@ -64,11 +64,7 @@ public class UserRepository : IUserRepository
         user.Password = userUpdate.Password;
         user.Avatar = userUpdate.Avatar;
 
-        await _context.Users.ExecuteUpdateAsync(u => u
-        .SetProperty(un => un.Username, userUpdate.Username)
-        .SetProperty(un => un.Email, userUpdate.Email)
-        .SetProperty(un => un.Password, userUpdate.Password)
-        .SetProperty(un => un.Avatar, userUpdate.Avatar));
+        await _context.SaveChangesAsync();
     }
 
 }

@@ -53,6 +53,8 @@ export class Ticket {
 
         if (!unattendRequest.ok) return;
 
+        alert("Odlazak otkazan");
+
         this.container.parentNode.removeChild(this.container);
     }
 }

@@ -44,6 +44,8 @@ export class CreateTaskPage {
          });
 
          if (!createTaskRequest.ok) return;
+
+         alert("Task je uspesno napravljen");
     }
 
     handleInputChange(event) {

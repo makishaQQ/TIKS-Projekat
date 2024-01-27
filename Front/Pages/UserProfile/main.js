@@ -69,10 +69,7 @@ export class UserProfilePage {
 
         if (!updateProfileRequest.ok) return;
 
-        this.usernameInput.setAttribute("value", this.user["username"]);
-        this.emailInput.setAttribute("value", this.user["email"]);
-        this.passwordInput.setAttribute("value", this.user["password"]);
-        this.avatarImage.setAttribute("src", prefix64Encoded + this.user["avatar"]);
+        alert("Profil je azuriran");
     }
 }
 

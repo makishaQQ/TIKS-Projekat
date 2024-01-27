@@ -11,7 +11,7 @@ export class TasksPage {
     }
 
     async draw() {
-        const tasksRequest = await fetch (serverUrl + "/Task/mytasks/" + localStorage.getItem("id"));
+        const tasksRequest = await fetch (serverUrl + "/Task/my-tasks/" + localStorage.getItem("id"));
 
         if (!tasksRequest.ok) return;
 

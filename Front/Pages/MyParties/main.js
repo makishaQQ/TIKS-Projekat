@@ -10,7 +10,7 @@ export class MyPartiesPage {
     }
 
     async draw() {
-        const myPartiesRequest = await fetch (serverUrl + "/Party/myparties/" + localStorage.getItem("id"));
+        const myPartiesRequest = await fetch (serverUrl + "/Party/my-parties/" + localStorage.getItem("id"));
 
         if (!myPartiesRequest.ok) return;
 

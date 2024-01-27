@@ -1,3 +1,4 @@
+C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\Microsoft.Playwright.dll
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\testhost.dll
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\testhost.exe
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\.playwright\node\win32_x64\node.exe
@@ -311,7 +312,6 @@ C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\TestiranjeAPI.Tests.pdb
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
-C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\Microsoft.Playwright.dll
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\Microsoft.Playwright.NUnit.dll
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\Microsoft.Playwright.TestAdapter.dll
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\bin\Debug\net7.0\Microsoft.TestPlatform.CoreUtilities.dll
@@ -394,6 +394,7 @@ C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\Debug\net7.0\TestiranjeAPI.Tests.AssemblyInfoInputs.cache
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\Debug\net7.0\TestiranjeAPI.Tests.AssemblyInfo.cs
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\Debug\net7.0\TestiranjeAPI.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\Debug\net7.0\TestiranjeAPI.Tests.sourcelink.json
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\Debug\net7.0\TestiranjeAPI.Tests.csproj.CopyComplete
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\Debug\net7.0\TestiranjeAPI.Tests.dll
 C:\Users\Roko\Desktop\Testiranje Projekat\TestiranjeAPI\TestiranjeAPI.Tests\obj\Debug\net7.0\refint\TestiranjeAPI.Tests.dll

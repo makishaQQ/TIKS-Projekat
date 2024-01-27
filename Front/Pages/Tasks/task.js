@@ -56,6 +56,8 @@ export class Task {
 
                 if (!taskEditRequest.ok) return;
 
+                alert("Task uspesno editovan");
+
                 taskName.textContent = newTaskName;
                 taskDescription.textContent = newTaskDescription;
             });
@@ -70,6 +72,8 @@ export class Task {
                 });
 
                 if (!taskRemoveRequest.ok) return;
+
+                alert("Task je uspesno obrisan");
 
                 card.removeChild(taskCard);
             });

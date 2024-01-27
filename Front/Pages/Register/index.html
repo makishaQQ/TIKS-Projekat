@@ -8,14 +8,17 @@
     <title>Register</title>
 </head>
 <body>
-    
-    <sl-input class="username-input" name="username" label="Username"></sl-input>
-    <sl-input class="email-input" name="email" label="Email"></sl-input>
-    <sl-input class="password-input" name="password" label="Password"></sl-input>
-    <input class="avatar-input" style="display: none;" type="file" accept="image/*">
-    <sl-button class="avatar-button">Avatar</sl-button>
-    <sl-button class="login-button">Login</sl-button>
-    <sl-button class="register-button">Register</sl-button>
+    <div style="display: flex;justify-content: center;align-items: center;">
+        <div style="display: flex;flex-direction: column;row-gap: 5px; width: 300px;">
+            <sl-input class="username-input" name="username" label="Username"></sl-input>
+            <sl-input class="email-input" name="email" label="Email"></sl-input>
+            <sl-input class="password-input" name="password" label="Password"></sl-input>
+            <input class="avatar-input" style="display: none;" type="file" accept="image/*">
+            <sl-button class="avatar-button">Avatar</sl-button>
+            <sl-button class="login-button">Login</sl-button>
+            <sl-button class="register-button">Register</sl-button>
+        </div>
+    </div>
 
     <script src="main.js" type="module"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/shoelace-autoloader.js"></script>

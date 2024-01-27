@@ -65,6 +65,15 @@ public class TaskTests : PlaywrightTest
     }
 
     [Test]
+    public async Task My_Tasks_ShouldReturnBadRequests()
+    {
+        int userId = int.MaxValue;
+        await using var response = await Request.GetAsync($"/Task/{MY_TASKS}/{userId}");
+
+        Assert.That(response.Status, Is.EqualTo(400));
+    }
+
+    [Test]
     public async Task CreateTask_ShouldReturnOk()
     {
         int userId = 10;

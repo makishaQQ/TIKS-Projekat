@@ -164,7 +164,17 @@ public class PartyTests : PlaywrightTest
             Assert.That(resultArr.Count, Is.EqualTo(0));
         });
     }
-    //ova metoda treba da se ispravi
+
+
+    [Test]
+    public async Task MyParties_ShouldReturnBadRequest()
+    {
+        int userId = int.MaxValue;
+        await using var response = await Request.GetAsync($"/Party/{MY_PARTIES}/{userId}");
+
+        Assert.That(response.Status, Is.EqualTo(400));
+    }
+    
     [Test]
     public async Task AvailableParties_ShouldReturnOk_AndNonEmptyParties()
     {
@@ -214,15 +224,6 @@ public class PartyTests : PlaywrightTest
             Assert.That(response.Status, Is.EqualTo(200));
             Assert.That(resultArr.Count, Is.EqualTo(0));
         });
-    }
-
-    [Test]
-    public async Task MyParties_ShouldReturnBadRequest()
-    {
-        int userId = 1000;
-        await using var response = await Request.GetAsync($"/Party/{MY_PARTIES}/{userId}");
-
-        Assert.That(response.Status, Is.EqualTo(400));
     }
 
     [Test]
@@ -303,6 +304,16 @@ public class PartyTests : PlaywrightTest
         await using var response = await Request.DeleteAsync($"/Party/{UNATTEND}/{partyId}/{userId}");
 
         Assert.That(response.Status, Is.EqualTo(400));
+    }
+
+    [Test]
+    public async Task PartiesNames_ShouldReturnOk()
+    {
+        int userId = 2;
+
+        await using var response = await Request.GetAsync($"/Party/{PARTIES_NAMES}/{userId}");
+
+        Assert.That(response.Status, Is.EqualTo(200));
     }
 
     [TearDown]

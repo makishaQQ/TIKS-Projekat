@@ -12,19 +12,30 @@ namespace TestiranjeAPI.Tests.Front;
 [TestFixture]
 public class TaskTests : PageTest
 {
+    public override BrowserNewContextOptions ContextOptions()
+    {
+        return new BrowserNewContextOptions()
+        {
+            IgnoreHTTPSErrors = true
+            
+        };
+    }
     [Test]
     public async Task CreateTask()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwTaskCreateTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwTaskCreateTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Task" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Create Task");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Combobox, new() { Name = "Choose Party" }).ClickAsync();
         await Page.GetByRole(AriaRole.Option, new() { Name = "TaskToCreate" }).Locator("slot").Nth(1).ClickAsync();
@@ -48,15 +59,18 @@ public class TaskTests : PageTest
     public async Task EditTask()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwTaskEditTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwTaskEditTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Tasks" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Tasks");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         async void Page_Dialog_EventHandler(object sender, IDialog dialog)
         {
@@ -82,15 +96,18 @@ public class TaskTests : PageTest
     public async Task RemoveTask()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwTaskRemoveTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwTaskRemoveTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Tasks" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Tasks");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         void Page_Dialog_EventHandler(object sender, IDialog dialog)
         {

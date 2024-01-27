@@ -24,15 +24,18 @@ public class PartyTests : PageTest
     public async Task CreateParty()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwCreatePartyTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwCreatePartyTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Create Party" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Create Party");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByLabel("Party Name").ClickAsync();
         await Page.GetByLabel("Party Name").FillAsync("zurka");
@@ -58,15 +61,18 @@ public class PartyTests : PageTest
     public async Task CancelParty()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwCancelPartyTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwCancelPartyTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "My Parties" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("My Parties");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         void Page_Dialog_EventHandler(object sender, IDialog dialog)
         {
@@ -84,15 +90,18 @@ public class PartyTests : PageTest
     public async Task EditParty()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwEditPartyTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwEditPartyTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "My Parties" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("My Parties");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         async void Page_Dialog_EventHandler(object sender, IDialog dialog)
         {
@@ -117,15 +126,19 @@ public class PartyTests : PageTest
     public async Task AttendParty()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwAttendPartyTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwAttendPartyTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        //await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Parties", Exact = true }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Parties");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         void Page_Dialog_EventHandler(object sender, IDialog dialog)
         {
@@ -143,15 +156,18 @@ public class PartyTests : PageTest
     public async Task UnattendParty()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwUnattendPartyTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwUnattendPartyTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Tickets" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Tickets");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Unattend" }).ClickAsync();
 

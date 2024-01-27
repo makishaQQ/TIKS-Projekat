@@ -107,8 +107,42 @@ public class UserTests : PlaywrightTest
                 avatar = "Ok"
             }
         });
-        Console.WriteLine(response.Status);
         Assert.That(response.Status, Is.EqualTo((int)HttpStatusCode.OK));
+    }
+
+    [Test]
+    public async Task UserUpdate_ShouldReturnBadRequest()
+    {
+        int userId = int.MaxValue;
+        await using var response = await Request.PutAsync($"/User/update/{userId}", new()
+        {
+            DataObject = new
+            {
+                username = "makisha",
+                password = "novasifra",
+                email = "emaaaail",
+                avatar = "Ok"
+            }
+        });
+        Assert.That(response.Status, Is.EqualTo((int)HttpStatusCode.BadRequest));
+    }
+
+    [Test]
+    public async Task UserInfo_ShouldReturnOk()
+    {
+        int userId = 2;
+        await using var response = await Request.GetAsync($"/User/info/{userId}");
+
+        Assert.That(response.Status, Is.EqualTo(200));
+    }
+
+    [Test]
+    public async Task UserInfo_ShouldReturnBadRequest()
+    {
+        int userId = int.MaxValue;
+        await using var response = await Request.GetAsync($"/User/info/{userId}");
+
+        Assert.That(response.Status, Is.EqualTo(400));
     }
 
     [TearDown]

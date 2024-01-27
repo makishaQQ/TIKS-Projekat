@@ -24,12 +24,14 @@ public class UserTests : PageTest
     public async Task Login()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwLoginTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwLoginTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         string expectedTitle = "Dashboard";
         string actualTitle = await Page.TitleAsync();
@@ -42,15 +44,19 @@ public class UserTests : PageTest
     public async Task UpdateProfile()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Login/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwUpdateTest");
         await Page.GetByLabel("Password").ClickAsync();
         await Page.GetByLabel("Password").FillAsync("pwUpdateTest123@");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Login" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Dashboard");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
 
         await Page.GetByRole(AriaRole.Button, new() { Name = "Profile" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("My Profile");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
+
         await Page.GetByLabel("Email").ClickAsync();
         await Page.GetByLabel("Email").FillAsync("pwUpdateTest123@gmail.com");
         void Page_Dialog1_EventHandler(object sender, IDialog dialog)
@@ -69,6 +75,7 @@ public class UserTests : PageTest
     public async Task Register()
     {
         await Page.GotoAsync("http://127.0.0.1:5500/Front/Pages/Register/index.html");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
         await Page.GetByLabel("Username").ClickAsync();
         await Page.GetByLabel("Username").FillAsync("pwRegisterTest");
         await Page.GetByLabel("Email").ClickAsync();
@@ -78,7 +85,9 @@ public class UserTests : PageTest
         await Page.GetByRole(AriaRole.Button, new() { Name = "Avatar" }).ClickAsync();
         await Page.SetInputFilesAsync("input[type=file]", new[] { "avatar-thumb--1-.png" });
         await Page.GetByRole(AriaRole.Button, new() { Name = "Register" }).ClickAsync();
-        await Task.Delay(1000);
+        await Expect(Page).ToHaveTitleAsync("Login");
+        await Page.WaitForLoadStateAsync(LoadState.Load);
+
 
         string actual = await Page.TitleAsync();
         string expected = "Login";

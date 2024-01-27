@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi.tests\\front\\tasktests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|solutionrelative:testiranjeapi.tests\\front\\tasktests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi.tests\\front\\partytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|solutionrelative:testiranjeapi.tests\\front\\partytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi.tests\\front\\usertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|solutionrelative:testiranjeapi.tests\\front\\usertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|c:\\users\\roko\\desktop\\testiranje projekat\\testiranjeapi\\testiranjeapi.tests\\front\\visitpagetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10CFFCF7-B267-447D-B0A0-B6ADA1A1C96B}|TestiranjeAPI.Tests\\TestiranjeAPI.Tests.csproj|solutionrelative:testiranjeapi.tests\\front\\visitpagetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,49 +14,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserTests.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\UserTests.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI.Tests\\Front\\UserTests.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\UserTests.cs",
-              "RelativeToolTip": "TestiranjeAPI.Tests\\Front\\UserTests.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-27T10:34:44.579Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PartyTests.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\PartyTests.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI.Tests\\Front\\PartyTests.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\PartyTests.cs",
-              "RelativeToolTip": "TestiranjeAPI.Tests\\Front\\PartyTests.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAqwDkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-27T10:29:21.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TaskTests.cs",
-              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\TaskTests.cs",
-              "RelativeDocumentMoniker": "TestiranjeAPI.Tests\\Front\\TaskTests.cs",
-              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\TaskTests.cs",
-              "RelativeToolTip": "TestiranjeAPI.Tests\\Front\\TaskTests.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAuwGoAAAAAAAAA",
+              "Title": "VisitPageTests.cs",
+              "DocumentMoniker": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\VisitPageTests.cs",
+              "RelativeDocumentMoniker": "TestiranjeAPI.Tests\\Front\\VisitPageTests.cs",
+              "ToolTip": "C:\\Users\\Roko\\Desktop\\Testiranje Projekat\\TestiranjeAPI\\TestiranjeAPI.Tests\\Front\\VisitPageTests.cs",
+              "RelativeToolTip": "TestiranjeAPI.Tests\\Front\\VisitPageTests.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-27T10:16:41.592Z",
+              "WhenOpened": "2024-01-27T13:09:59.31Z",
               "EditorCaption": ""
             }
           ]
